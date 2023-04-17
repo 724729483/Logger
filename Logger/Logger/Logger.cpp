@@ -21,16 +21,12 @@ namespace Logger
 		switch (LoggerLevel)
 		{
 		case Level::Info:
-			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x07);
 			return "Info";
 		case Level::Warning:
-			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x06);
 			return "Warning";
 		case Level::Error:
-			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x04);
 			return "Error";
 		case Level::Debug:
-			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x0b);
 			return "Debug";
 		default:
 			return "";
@@ -44,5 +40,27 @@ namespace Logger
 		localtime_s(&_Tm, &Time);
 		strftime(TimeText, sizeof(TimeText), "[%Y-%m-%d %H:%M:%S]", &_Tm);
 		return TimeText;
+	}
+	void SetColour(Logger::Level LoggerLevel)
+	{
+		switch (LoggerLevel)
+		{
+		case Level::Info:
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x07);
+			return;
+		case Level::Warning:
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x06);
+			return;
+		case Level::Error:
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x04);
+			return;
+		case Level::Debug:
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x0b);
+			return;
+		default:
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x07);
+			return;
+		}
+		return;
 	}
 }
