@@ -1,4 +1,6 @@
-#include "Logger.h"
+#include <Windows.h>
+#include <string>
+#include <time.h>
 namespace Logger
 {
 	FILE* stdin_stream;
@@ -18,13 +20,13 @@ namespace Logger
 	{
 		switch (LoggerLevel)
 		{
-		case Level::const_Info:
+		case 0:
 			return "Info";
-		case Level::const_Warning:
+		case 1:
 			return "Warning";
-		case Level::const_Error:
+		case 2:
 			return "Error";
-		case Level::const_Debug:
+		case 3:
 			return "Debug";
 		default:
 			return "";
@@ -43,16 +45,16 @@ namespace Logger
 	{
 		switch (LoggerLevel)
 		{
-		case Level::const_Info:
+		case 0:
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x07);
 			return;
-		case Level::const_Warning:
+		case 1:
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x06);
 			return;
-		case Level::const_Error:
+		case 2:
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x04);
 			return;
-		case Level::const_Debug:
+		case 3:
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x0b);
 			return;
 		default:
