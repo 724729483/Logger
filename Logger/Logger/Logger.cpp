@@ -1,5 +1,3 @@
-#include <iostream>
-#include <Windows.h>
 #include "Logger.h"
 namespace Logger
 {
@@ -16,17 +14,17 @@ namespace Logger
 		ShowWindow(GetConsoleWindow(), SW_SHOW);
 		return GetConsoleWindow();
 	}
-	std::string GetLevel(Logger::Level LoggerLevel)
+	std::string GetLevel(int LoggerLevel)
 	{
 		switch (LoggerLevel)
 		{
-		case Level::Info:
+		case Level::const_Info:
 			return "Info";
-		case Level::Warning:
+		case Level::const_Warning:
 			return "Warning";
-		case Level::Error:
+		case Level::const_Error:
 			return "Error";
-		case Level::Debug:
+		case Level::const_Debug:
 			return "Debug";
 		default:
 			return "";
@@ -41,20 +39,20 @@ namespace Logger
 		strftime(TimeText, sizeof(TimeText), "[%Y-%m-%d %H:%M:%S]", &_Tm);
 		return TimeText;
 	}
-	void SetColour(Logger::Level LoggerLevel)
+	void SetColour(int LoggerLevel)
 	{
 		switch (LoggerLevel)
 		{
-		case Level::Info:
+		case Level::const_Info:
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x07);
 			return;
-		case Level::Warning:
+		case Level::const_Warning:
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x06);
 			return;
-		case Level::Error:
+		case Level::const_Error:
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x04);
 			return;
-		case Level::Debug:
+		case Level::const_Debug:
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x0b);
 			return;
 		default:
